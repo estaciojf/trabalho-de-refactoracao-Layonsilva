@@ -1,5 +1,9 @@
 package Controllers;
 
+/**
+ * Importações não utilizadas foram removidas.
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,53 +18,50 @@ import Models.Livro;
 
 public class CadastroLivroController implements ActionListener {
 
-	private JTextField fieldTitle;
-	private JTextField fieldAuthor;
-	private JComboBox comboGender;
-	private JComboBox comboYear;
-	private JCheckBox isRead;
-	private List<Livro> listLivros;
+	/**
+	 * Nomes de variáveis trocadas para a facilitar o entendimento.
+	 */
 	
+	private JTextField titulo;
+	private JTextField autor;
+	private JComboBox genero;
+	private JComboBox ano;
+	private JCheckBox foiLido;
+	private List<Livro> listaLivros;
 	
-	public CadastroLivroController(
-			JTextField fieldTitle, 
-			JTextField fieldAuthor,
-			JComboBox comboGender,
-			JComboBox comboYear,
-			JCheckBox isRead) {
+	public CadastroLivroController( JTextField titulo, JTextField autor, JComboBox genero, JComboBox ano, JCheckBox foiLido) {
 		
-		this.fieldTitle = fieldTitle;
-		this.fieldAuthor = fieldAuthor;
-		this.isRead = isRead;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.foiLido = foiLido;
 		
-		listLivros = new ArrayList<>();
+		listaLivros = new ArrayList<>();
 		
-		this.populateComboYear(comboYear);
-		this.populateComboGener(comboGender);
+		this.populateComboYear(ano);
+		this.populateComboGener(genero);
 	}
 	
 	private void populateComboYear(JComboBox comboYear) {
-		this.comboYear = comboYear;
+		this.ano = comboYear;
 		
 		int anoAtual = Calendar.getInstance().get(Calendar.YEAR); 
 		
 		for (int yearLoop = anoAtual ; yearLoop >= 1900 ; yearLoop --) {
-			this.comboYear.addItem(yearLoop);
+			this.ano.addItem(yearLoop);
 		}
 	}
 	
 	private void populateComboGener(JComboBox comboGender) {
-		this.comboGender = comboGender;
-		String[] genders = new String[] { "Terror", "FicÃ§Ã£o", "Drama", "Aventura", "ComÃ©dia", "TÃ©cnico" };
+		this.genero = comboGender;
+		String[] genders = new String[] { "Terror", "Ficção", "Drama", "Aventura", "Comédia", "Técnico" };
 		for (String genderLoop : genders) {
-			this.comboGender.addItem(genderLoop);
+			this.genero.addItem(genderLoop);
 		}
 		
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
+		
 		System.out.println(event.getActionCommand());
 		this.cadastrarLivro();
 	}
@@ -68,17 +69,17 @@ public class CadastroLivroController implements ActionListener {
 	public void cadastrarLivro() {
 		
 		Livro livro = new Livro(
-				this.fieldTitle.getText(), 
-				this.fieldAuthor.getText(),
-				this.comboGender.getSelectedItem().toString(),
-				Integer.parseInt(this.comboYear.getSelectedItem().toString()),
-				this.isRead.isSelected()
+				this.titulo.getText(), 
+				this.autor.getText(),
+				this.genero.getSelectedItem().toString(),
+				Integer.parseInt(this.ano.getSelectedItem().toString()),
+				this.foiLido.isSelected()
 				);
 		
-		listLivros.add(livro);
+		listaLivros.add(livro);
 		
-		for (int i = 0 ; i < listLivros.size() ; i ++ ) {
-			System.out.println(listLivros.get(i).toString());
+		for (int i = 0 ; i < listaLivros.size() ; i ++ ) {
+			System.out.println(listaLivros.get(i).toString());
 		}
 		
 	}

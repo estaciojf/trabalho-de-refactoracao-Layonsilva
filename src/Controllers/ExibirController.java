@@ -12,21 +12,19 @@ import DAO.LivroDAO;
 import Listeners.TableLivroListener;
 import Models.Livro;
 
-
-
-
 public class ExibirController implements ActionListener {
 	
-	private JTable table;
-	public String column[]={"TÃ­tulo","Autor", "Genero", "Ano", "JÃ¡ Leu?"};  
+	/**
+	 * Remoção da private JTable que não estava sendo utilizada.
+	 */
+	
+	public String column[]={"Terror", "Ficção", "Drama", "Aventura", "Comédia", "Técnico"};  
 	DefaultTableModel model;
 
 	public ExibirController(JTable table) throws SQLException {
-		this.table = table;
 		this.model = (DefaultTableModel) table.getModel();
 		this.setTableColumns();
 		this.getLivros();
-		
 		
 		TableLivroListener tableListener = new TableLivroListener(table);
 		
@@ -43,7 +41,6 @@ public class ExibirController implements ActionListener {
 		
 		this.model.setRowCount(0);
 		
-
 		try {
 			LivroDAO livroDao = new LivroDAO();
 			List<Livro> list = livroDao.getAllLivros();
