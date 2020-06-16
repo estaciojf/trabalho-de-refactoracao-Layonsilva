@@ -1,5 +1,16 @@
 README
 
+##Modificações feitas:
+
+Importações não utilizadas foram removidas. 
+
+Nomes de variáveis trocadas para a facilitar o entendimento.
+
+String de conexão alterada.
+
+Algumas descrições adicionadas
+
+
 
 ### SQL
 ```
