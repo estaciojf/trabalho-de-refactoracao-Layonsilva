@@ -13,22 +13,21 @@ import Models.Livro;
 
 public class TableLivroListener implements TableModelListener {
 
+	/**
+	 * Remoção da private JTable que não estava sendo utilizada.
+	 */
 	
-	private JTable table;
 	private DefaultTableModel model;
 	private LivroDAO livroDao;
 
-	
 	public TableLivroListener(JTable table) throws SQLException {
-		this.table = table;
 		this.model = (DefaultTableModel) table.getModel();
 		livroDao = new LivroDAO();
 	}
 	
-	@Override
 	public void tableChanged(TableModelEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Oce Ã© o bixao mesmo hein!");
+		System.out.println("Oce é o bixao mesmo hein!");
 		switch(e.getType()){
 		case TableModelEvent.UPDATE: 
 			try {
@@ -40,10 +39,7 @@ public class TableLivroListener implements TableModelListener {
 			break;
 		}
 		
-
-		
 	}
-	
 	
 	public void updateTable(TableModelEvent event) throws SQLException {
 		
@@ -53,7 +49,6 @@ public class TableLivroListener implements TableModelListener {
 			System.out.println(this.model.getValueAt(rowChanged, columnIndex));
 			columnsValues.add(this.model.getValueAt(rowChanged, columnIndex));
 		}
-		
 		
 		Livro livro = new Livro(
 				columnsValues.get(0).toString(),
