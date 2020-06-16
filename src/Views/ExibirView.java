@@ -1,5 +1,7 @@
 package Views;
-
+/**
+ * Importações não utilizadas foram removidas.
+ */
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -8,13 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controllers.ExibirController;
-import Listeners.TableLivroListener;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import java.awt.Image;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JTextField;
@@ -22,16 +21,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.event.ActionEvent;
 
 public class ExibirView extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTable table;
+	/**
+	 * Nomes de variáveis trocadas para a facilitar o entendimento.
+	 */
+	
+	private JPanel painel;
+	private JTextField texto;
+	private JTable tabela;
 
 	/**
-	 * Launch the application.
+	 * Iniciação da aplicação.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,29 +49,29 @@ public class ExibirView extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Criação do frame.
 	 */
 	public ExibirView() {
 		setTitle("Exibir");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		painel = new JPanel();
+		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		painel.setLayout(new BorderLayout(0, 0));
+		setContentPane(painel);
 		
 		JPanel panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
-		contentPane.add(panel, BorderLayout.NORTH);
+		painel.add(panel, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("Buscar Livro");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		panel.add(textField);
-		textField.setColumns(10);
+		texto = new JTextField();
+		panel.add(texto);
+		texto.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		panel.add(btnBuscar);
@@ -86,12 +88,15 @@ public class ExibirView extends JFrame {
 		btnRefresh.setIcon(new ImageIcon(imageButton));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
-		table = new JTable();
+		painel.add(scrollPane, BorderLayout.CENTER);
+		tabela = new JTable();
 
+		/**
+		 *  O handler foi removido, mas as tarefas foram mantidas.
+		 */
 				
 		try {
-			ExibirController handle = new ExibirController(table);
+			new ExibirController(tabela);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,7 +104,7 @@ public class ExibirView extends JFrame {
 
 		
 		
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(tabela);
 	}
 
 }
